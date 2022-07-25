@@ -15,7 +15,7 @@ RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 
 # [Optional] Uncomment this section to install additional packages.
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends libevent-dev \
+    && apt-get -y install --no-install-recommends libevent-dev librdkafka-dev \
     && echo "fin"
 
 #RUN vcpkg install libevent librdkafka luajit
