@@ -12,18 +12,10 @@ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules;${CMAKE_MODULE_
 
 find_package(libevent REQUIRED)
 
-mark_as_advanced(
-    LIBEVENT_INCLUDE_DIR
-    LIBEVENT_LIB_DIR
-)
-
-message(STATUS "find LIBEVENT_INCLUDE_DIR = ${LIBEVENT_INCLUDE_DIR}")
-message(STATUS "find LIBEVENT_LIB_DIR = ${LIBEVENT_LIB_DIR}")
-
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/src
     ${LIBEVENT_INCLUDE_DIR}
 )
 
-target_link_libraries(main demo event)
+target_link_libraries(main demo ${LIBEVENT_LIB_DIR})

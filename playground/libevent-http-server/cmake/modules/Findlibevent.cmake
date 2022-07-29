@@ -7,11 +7,10 @@ find_path(
     /usr/local/include
 )
 
-find_path(
+find_library(
     LIBEVENT_LIB_DIR 
     libevent.so
-    /usr/lib/x86_64-linux-gnu
 )
 
-#message(STATUS "find LIBEVENT_INCLUDE_DIR = ${LIBEVENT_INCLUDE_DIR}")
-#message(STATUS "find LIBEVENT_LIB_DIR = ${LIBEVENT_LIB_DIR}")
+message(STATUS "set LIBEVENT_INCLUDE_DIR = ${LIBEVENT_INCLUDE_DIR}")
+message(STATUS "set LIBEVENT_LIB_DIR = ${LIBEVENT_LIB_DIR}")

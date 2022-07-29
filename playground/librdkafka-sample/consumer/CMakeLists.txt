@@ -10,17 +10,9 @@ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../cmake/modules;${CMAKE_MODU
 
 find_package(librdkafka REQUIRED)
 
-mark_as_advanced(
-    LIBRDKAFKA_INCLUDE_DIR
-    LIBRDKAFKA_LIB_DIR
-)
-
-message(STATUS "find LIBRDKAFKA_INCLUDE_DIR = ${LIBRDKAFKA_INCLUDE_DIR}")
-message(STATUS "find LIBRDKAFKA_LIB_DIR = ${LIBRDKAFKA_LIB_DIR}")
-
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${LIBRDKAFKA_INCLUDE_DIR}
 )
 
-target_link_libraries(consumer rdkafka)
+target_link_libraries(consumer ${LIBRDKAFKA_LIB_DIR})

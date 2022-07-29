@@ -7,8 +7,10 @@ find_path(
     /usr/local/include
 )
 
-find_path(
+find_library(
     LIBRDKAFKA_LIB_DIR 
     librdkafka.so
-    /usr/lib/x86_64-linux-gnu
 )
+
+message(STATUS "set LIBRDKAFKA_INCLUDE_DIR = ${LIBRDKAFKA_INCLUDE_DIR}")
+message(STATUS "set LIBRDKAFKA_LIB_DIR = ${LIBRDKAFKA_LIB_DIR}")
