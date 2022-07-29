@@ -1,21 +1,15 @@
-# See here for image contents: https://github.com/microsoft/vscode-dev-containers/tree/v0.195.0/containers/cpp/.devcontainer/base.Dockerfile
-# [Choice] Debian / Ubuntu version (use Debian 11/9, Ubuntu 18.04/21.04 on local arm64/Apple Silicon): debian-11, debian-10, debian-9, ubuntu-21.04, ubuntu-20.04, ubuntu-18.04
-ARG VARIANT=debian-11
-FROM mcr.microsoft.com/vscode/devcontainers/cpp:0-${VARIANT}
+# See here for image contents: https://github.com/microsoft/vscode-dev-containers/tree/v0.241.1/containers/alpine/.devcontainer/base.Dockerfile
 
-# Avoid reinstalling vscode extensions upon rebuilding container
-ARG USERNAME=vscode
-
-RUN mkdir -p /home/$USERNAME/.vscode-server/extensions \
-    && chown -R $USERNAME \
-    /home/$USERNAME/.vscode-server
+# [Choice] Alpine version: 3.15, 3.14, 3.13
+ARG VARIANT="3.15"
+FROM mcr.microsoft.com/vscode/devcontainers/base:0-alpine-${VARIANT}
 
 # Set apt mirror
-RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
 
-# [Optional] Uncomment this section to install additional packages.
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends libxml2-dev libevent-dev librdkafka-dev luajit \
-    && echo "fin"
+# ** [Optional] Uncomment this section to install additional packages. **
+RUN apk update \
+    && apk add --no-cache build-base
 
-#RUN vcpkg install libevent librdkafka luajit
+RUN apk add --no-cache gdb valgrind cmake
+RUN apk add --no-cache libxml2-dev libevent-dev librdkafka-dev luajit-dev
